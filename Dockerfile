@@ -5,6 +5,8 @@ USER root
 COPY wbctl ./
 COPY wbmark ./
 
-RUN chmod a+x -R /app
+RUN apt-get -qq update \
+    && apt-get -qq install -y --no-install-recommends ca-certificates curl \
+    && chmod a+x -R /app
 
-CMD wbctl https://dspace1.fuckgyz.eu.org
+CMD /app/wbctl https://dspace1.fuckgyz.eu.org
